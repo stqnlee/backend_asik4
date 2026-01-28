@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Notes (JWT + RBAC)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Notes (Asik 4)</h1>
+    <div class="card">
+      <h2>Auth</h2>
+
+      <div class="row">
+        <input id="email" type="email" placeholder="Email" />
+        <input id="password" type="password" placeholder="Password (min 6)" />
+      </div>
+
+      <div class="row">
+        <button id="btnRegister" type="button">Register (user)</button>
+        <button id="btnLogin" type="button">Login</button>
+        <button id="btnLogout" type="button" class="btn-secondary">Logout</button>
+      </div>
+
+      <div class="small">
+        Status: <span id="authStatus">Not logged in</span>
+      </div>
+
+      <div class="small">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Categories</h2>
+
+      <div class="row">
+        <input id="categoryName" type="text" placeholder="New category name" />
+        <button id="btnAddCategory" type="button">Add Category (admin)</button>
+      </div>
+
+      <div class="row">
+        <select id="categorySelect"></select>
+      </div>
+
+      <div class="small">GET is public. Creating categories requires admin token.</div>
+    </div>
+
+    <div class="filters">
+      <input id="search" type="text" placeholder="Search (title/content/tags)..." />
+
+      <select id="filterPriority">
+        <option value="">All priorities</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <select id="filterStatus">
+        <option value="all">All</option>
+        <option value="todo">To do</option>
+        <option value="done">Done</option>
+      </select>
+
+      <select id="sort">
+        <option value="newest">Newest</option>
+        <option value="oldest">Oldest</option>
+        <option value="dueSoon">Due soon</option>
+      </select>
+
+      <button id="applyFilters" type="button">Apply</button>
+      <button id="resetFilters" type="button" class="btn-secondary">Reset</button>
+    </div>
+
+    <form id="noteForm" class="card">
+      <h2 id="formTitle">Add Note (admin)</h2>
+
+      <input id="title" type="text" placeholder="Title" required minlength="2" maxlength="80" />
+      <textarea id="content" placeholder="Content" required minlength="2" maxlength="2000"></textarea>
+
+      <div class="row">
+        <select id="priority">
+          <option value="low">Priority: Low</option>
+          <option value="medium" selected>Priority: Medium</option>
+          <option value="high">Priority: High</option>
+        </select>
+        <input id="dueDate" type="date" />
+      </div>
+
+      <input id="tags" type="text" placeholder="Tags (comma separated): study, uni" />
+
+      <div class="row">
+        <button id="submitBtn" type="submit">Add Note</button>
+        <button id="cancelEdit" type="button" class="btn-secondary hidden">Cancel Edit</button>
+      </div>
+
+      <div class="small">GET is public. Creating/updating/deleting notes requires admin token.</div>
+    </form>
+
+    <ul id="notesList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
